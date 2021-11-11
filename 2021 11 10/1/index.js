@@ -1,32 +1,28 @@
-let userSurname
-let userFirstName
-let userFatherName
-let userGender
-let userAge
+const user = {}
 
 do { 
-    userSurname = prompt("Enter your surname")
-} while (!userSurname)
+    user.lastName = prompt("Enter your last name")
+} while (!user.lastName)
 
 do { 
-    userFirstName = prompt("Enter your first name")
-} while (!userFirstName)
+    user.firstName = prompt("Enter your first name")
+} while (!user.firstName)
 
 do {
-    userFatherName = prompt("Enter father's name")
-} while (!userFatherName)
+    user.middleName = prompt("Enter your middle name")
+} while (!user.middleName)
 
 do {
-    userAge = Number(prompt("Enter your age"))
-} while (!userAge)
+    user.age = Number(prompt("Enter your age"))
+} while (!user.age)
 
-userGender = confirm("Are you a male?")
+user.gender = confirm("Are you a male?")
 
 alert(`
-    Ваше ФИО: ${userSurname} ${userFirstName} ${userFatherName}\n
-    Ваш возраст в годах: ${userAge}\n
-    Ваш возраст в днях:  ${userAge * 365}\n
-    ${userAge > 18 ? "Вы уже совершеннолетний" : "Вы eще не совершеннолетний"}\n
-    Ваш пол: ${userGender ? "мужской" : "женский"}\n
-    Вы на пенсии: ${userAge >= 60 ? "да" : "нет"}
+    Ваше ФИО: ${user.lastName} ${user.firstName} ${user.middleName}\n
+    Ваш возраст в годах: ${user.age}\n
+    Ваш возраст в днях:  ${user.age * 365}\n
+    ${user.age > 18 ? "Вы уже совершеннолетний" : "Вы eще не совершеннолетний"}\n
+    Ваш пол: ${user.gender ? "мужской" : "женский"}\n
+    Вы на пенсии: ${user.age >= 60 ? "да" : "нет"}
 `)
