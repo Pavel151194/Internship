@@ -4,7 +4,7 @@ const quadraticEquation = (a, b, c) => {
     const diskriminant = ( Math.pow(b, 2) ) - (4 * a * c)
 
     if (diskriminant < 0) {
-        console.log('не имеет вещественных корней')
+        console.log('уравнение не имеет вещественных корней')
     }
 
     if (diskriminant === 0) {
