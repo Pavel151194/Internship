@@ -43,7 +43,3 @@ const plus = (rightOp) => (leftOp) => `${leftOp} + ${rightOp()} = ${leftOp + rig
 const minus = (rightOp) => (leftOp) => `${leftOp} - ${rightOp()} = ${leftOp - rightOp()}`
 const times = (rightOp) => (leftOp) => `${leftOp} * ${rightOp()} = ${leftOp * rightOp()}`
 const dividedBy = (rightOp) => (leftOp) => `${leftOp} / ${rightOp()} = ${leftOp / rightOp()}`
-
-console.log(
-    seven(times(five()))
-)
