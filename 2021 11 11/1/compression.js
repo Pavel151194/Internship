@@ -7,24 +7,21 @@ const compress = (string) => {
 }
 
 const uncompress = (string) => {
+    const mass = string.split("")
 
-    const duplicate = (letter, count = 1) => {
+    const multiplicate = (letter, count = 1) => {
         let result = ""
-
-        for (let i = 0; i < count; i ++) {
-            result += letter
-        }
-
+        for (let i = 0; i < count; i ++) result += letter
         return result
     }
-    
-    const mass = string.split("")
-    
-    mass.forEach((el, i, arr) => {
-        if (el !== el[i + 1]) {
-            arr.splice( i, 2, duplicate(arr[i], arr[i + 1]) )
-        }
+
+    mass.reduce((acc, el, i, arr) => {
+        if (acc !== el) arr.splice( i - 1, 1, multiplicate(acc, el) )
+        if (i === arr.length - 1) arr.splice(-1, 1)
+        return el
     })
 
     return mass.join("")
 }
+
+console.log(uncompress("a2b3"))
