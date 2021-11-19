@@ -15,7 +15,7 @@ console.log(currentSums(numbers))
 // 2
 const str = "Каждый охотник желает знать, где сидит фазан."
 
-const countFirstLetters = (string) => string.split(" ").map(word => word.split("").filter((letter, i) => i === 0)).flat()
+const countFirstLetters = (string) => string.split(" ").map(word => word.split("").filter((_, i) => i === 0)).flat()
 
 console.log(countFirstLetters(str))
 
@@ -26,14 +26,14 @@ const changeArray = (array) => {
 
     if (array.length % 2 === 0) {
         array.map((el, i) => {
-            if(i < array.length / 2) leftSide.push(el)
-            if(i > array.length / 2 - 1) rightSide.push(el)
+            if (i < array.length / 2) leftSide.push(el)
+            if (i > array.length / 2 - 1) rightSide.push(el)
         })
     } else {
         array.map((el, i) => {
-            if(i < array.length / 2 - 1) leftSide.push(el)
-            if(i > array.length / 2) rightSide.push(el)
-            if(i === Math.floor(array.length / 2)) leftSide.splice(0, 0, el)
+            if (i < array.length / 2 - 1) leftSide.push(el)
+            if (i > array.length / 2) rightSide.push(el)
+            if (i === Math.floor(array.length / 2)) leftSide.splice(0, 0, el)
         })
     }
     return rightSide.concat(leftSide)

@@ -1,0 +1,32 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style-type: none;
+    cursor: default;
+}
+header {
+    display: flex;
+    gap: 5px;
+    margin-bottom: 5px;
+}
+button {
+    cursor: pointer;
+    width: 50px;
+}
+.input {
+    cursor: text;
+}
+.list_item {
+    display: flex;
+    margin-bottom: 5px;
+}
+.list_item > input {
+    border: none;
+    width: auto;
+    cursor: pointer;
+    margin-left: 5px;
+}
+.list_item > input:focus {
+    cursor: text;
+}
