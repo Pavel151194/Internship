@@ -7,7 +7,7 @@ const compress = (string) => {
 }
 
 const uncompress = (string) => {
-    const mass = string.split("")
+    const mass = [...string]
 
     const multiplicate = (letter, count = 1) => {
         let result = ""

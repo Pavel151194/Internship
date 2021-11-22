@@ -15,7 +15,7 @@ console.log(currentSums(numbers))
 // 2
 const str = "Каждый охотник желает знать, где сидит фазан."
 
-const countFirstLetters = (string) => string.split(" ").map(word => word.split("").filter((_, i) => i === 0)).flat()
+const countFirstLetters = (string) => string.split(" ").map(word => [...word].filter((_, i) => i === 0)).flat()
 
 console.log(countFirstLetters(str))
 
