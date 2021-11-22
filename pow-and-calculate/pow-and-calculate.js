@@ -1,10 +1,8 @@
-const pow = (x) => (n) => {
-    const example = `Результат ${x}^${n} =`
-
-    if (n === 0) return `${example} 1`
-    if (n === 1) return `${example} ${x}`
-    if (n < 0) return pow(x)(n + 1) / x
-    if (n > 1) return pow(x)(n - 1) * x
+const pow = (num) => (power) => {
+    if (power === 0) return 1
+    if (power === 1) return num
+    if (power < 0) return pow(num)(power + 1) / num
+    if (power > 1) return pow(num)(power - 1) * num
 }
 
 const calculate = (a) => (op) => (b) => {
