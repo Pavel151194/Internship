@@ -1,9 +1,8 @@
-import { $yearList, $monthList, $showCalendar, $datesField } from "./DOMs.js"
-
-class Calendar {  
-    constructor() {
-        this.yearList = [...Array(100)].map((_, index) => new Date().getFullYear() - index)
+export class Calendar {  
+    constructor(numbersOfYears) {
+        this.yearList = [...Array(numbersOfYears)].map((_, i) => new Date().getFullYear() - i)
         this.monthList = ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"]
+        this.dayList = ["Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Вс"]
         this.calendar = "<tr>"
     }
 
@@ -17,13 +16,15 @@ class Calendar {
 
     create() {
         this.lastDateOfMonth = new Date(this.year, this.month, 0).getDate()
-        this.fullDate = new Date(this.year, this.month, this.lastDateOfMonth)
+        this.fullDate = new Date(this.year, this.month - 1, this.lastDateOfMonth)
         this.lastDayOfMonth = this.fullDate.getDay()
         this.firstDayOfMonth = new Date(this.fullDate.getFullYear(), this.fullDate.getMonth(), 1).getDay()
         return this
     }
 
-    addDatesTable(datesField) {
+    showCalendar(datesField, daysField) {
+        this.addDaysLists(daysField)
+
         if (this.firstDayOfMonth !== 0) {
             for (let i = 1; i < this.firstDayOfMonth; i++) this.calendar += "<td></td>"
         } else {
@@ -38,11 +39,17 @@ class Calendar {
             }
         }
 
-        for (var  i = this.lastDayOfMonth; i < 7; i++) this.calendar += "<td></td>"
-
+        if (this.lastDayOfMonth !== 0) {
+            for (let i = 1; i <= 7 - this.lastDayOfMonth; i++) this.calendar += "<td></td>"
+        }   
+       
         datesField.innerHTML = this.calendar
 
         return this
+    }
+
+    addDaysLists(daysField) {
+        daysField.innerHTML += this.dayList.map(day => `<td>${day}</td>`)
     }
 
     addSelectsLists(yearList, monthList) {
@@ -50,19 +57,3 @@ class Calendar {
         monthList.innerHTML += this.monthList.map((month, i) => `<option value="${i}">${month}</option>`)
     }
 }
-
-const calendar = new Calendar
-calendar.addSelectsLists($yearList, $monthList)
-
-$showCalendar.setAttribute("disabled", true)
-
-document.addEventListener("change", event => {
-    const target = event.target
-    if (target.closest('.month_list')) calendar.saveMonth(target.closest('.month_list').value)
-    if (target.closest('.year_list')) calendar.saveYear(target.closest('.year_list').value)
-    if (calendar.month && calendar.year) $showCalendar.removeAttribute("disabled")
-})
-
-$showCalendar.addEventListener("click", () => {
-    calendar.create().addDatesTable($datesField)
-})

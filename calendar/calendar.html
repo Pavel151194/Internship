@@ -10,21 +10,21 @@
 <body>
     <div class="wrapper">
         <header class="calendar_options">
-            <button class="increase_year">&#60&#60</button>
-            <button class="increase_month">&#60</button>
+            <button class="calendar_option_button decrease_year">&#60&#60</button>
+            <button class="calendar_option_button decrease_month">&#60</button>
             <select class="month_list">
                 <option selected disabled>Выберите месяц</option>
             </select>
             <select class="year_list">
                 <option selected disabled>Выберите год</option>       
             </select>
-            <button class="decrease_month">&#62</button>
-            <button class="decrease_year">&#62&#62</button>
-            <button class="show_calendar">Создать</button>
+            <button class="calendar_option_button increase_month">&#62</button>
+            <button class="calendar_option_button increase_year ">&#62&#62</button>
+            <button class="calendar_option_button show_calendar">Создать</button>
         </header>
         <table class="calendar">
-            <th>
-                <tr>
+            <thead class="days_field">
+                <!-- <tr>
                     <td>Пн</td>
                     <td>Вт</td>
                     <td>Ср</td>
@@ -32,13 +32,13 @@
                     <td>Пт</td>
                     <td>Сб</td>
                     <td>Вс</td>
-                </tr>
-            </th>
+                </tr> -->
+            </thead>
             <tbody class="dates_field">
 
             </tbody>
         </table>
     </div>
 </body>
-<script type="module" src="calendar.js"></script>
+<script type="module" src="index.js"></script>
 </html>
