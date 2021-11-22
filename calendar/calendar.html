@@ -8,31 +8,37 @@
     <title>Document</title>
 </head>
 <body>
-    <table class="calendar">
-        <header>
+    <div class="wrapper">
+        <header class="calendar_options">
+            <button class="increase_year">&#60&#60</button>
+            <button class="increase_month">&#60</button>
             <select class="month_list">
                 <option selected disabled>Выберите месяц</option>
             </select>
             <select class="year_list">
                 <option selected disabled>Выберите год</option>       
             </select>
-            <button class="show_calendar">Показать</button>
+            <button class="decrease_month">&#62</button>
+            <button class="decrease_year">&#62&#62</button>
+            <button class="show_calendar">Создать</button>
         </header>
-        <thead>
-            <tr>
-                <td>Пн</td>
-                <td>Вт</td>
-                <td>Ср</td>
-                <td>Чт</td>
-                <td>Пт</td>
-                <td>Сб</td>
-                <td>Вс</td>
-            </tr>
-        </thead>
-        <tbody class="dates_field">
+        <table class="calendar">
+            <th>
+                <tr>
+                    <td>Пн</td>
+                    <td>Вт</td>
+                    <td>Ср</td>
+                    <td>Чт</td>
+                    <td>Пт</td>
+                    <td>Сб</td>
+                    <td>Вс</td>
+                </tr>
+            </th>
+            <tbody class="dates_field">
 
-        </tbody>
-    </table>
+            </tbody>
+        </table>
+    </div>
 </body>
 <script type="module" src="calendar.js"></script>
 </html>

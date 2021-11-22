@@ -6,21 +6,36 @@
     cursor: default;
     font-family: "sans-serif";
 }
-header{
-    display: flex;
-    gap: 5px;
-    margin-bottom: 10px;
+button {
+    cursor: pointer;
+}
+.wrapper {
+    max-width: 350px;
+    margin: auto;
+}
+.calendar_options {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-gap: 5px;
+    margin-bottom: 5px;
+}
+.increase_year, .decrease_year, .increase_month, .decrease_month {
+    grid-row-start: 1;
+    grid-row-end: 3;
+}
+.month_list {
+    grid-row-start: 1;
 }
 .month_list, .year_list {
+    grid-column-start: 3;
     outline: none;
     cursor: pointer;
 }
-
 .show_calendar{
-    cursor: pointer;
+    grid-column-start: 3;
 }
-
 table {
+    margin: auto;
     border-spacing: 0;
     border: 0.25px solid
 }

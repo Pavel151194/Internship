@@ -15,10 +15,10 @@ const uncompress = (string) => {
         return result
     }
 
-    mass.reduce((acc, el, i, arr) => {
-        if (acc !== el) arr.splice( i - 1, 1, multiplicate(acc, el) )
+    mass.reduce((acc, letter, i, arr) => {
+        if (acc !== letter) arr.splice( i - 1, 1, multiplicate(acc, letter) )
         if (i === arr.length - 1) arr.splice(-1, 1)
-        return el
+        return letter
     })
 
     return mass.join("")

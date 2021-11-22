@@ -39,6 +39,8 @@ document.addEventListener("change", event => {
 
     if (target.closest('.list_item')?.dataset?.id) {
         const id = target.closest('.list_item').dataset.id
-        mass.splice(id, 1, target.closest('.list_item input').value)
+        const value = target.closest('.list_item input').value
+        
+        mass.splice(id, 1, value)
     }
 })
