@@ -3,8 +3,10 @@ const compress = (string) => {
 
     string.split("").sort().forEach(el => resultObj[el] = (resultObj[el] || 0) + 1)
 
-    return Object.entries(resultObj).flat().filter(el => el !== 1).join("").toString()
+    return Object.entries(resultObj).flat().filter(el => el !== 1).join("")
 }
+
+console.log(compress("bbbccccaa"))
 
 const uncompress = (string) => {
     const mass = [...string]
