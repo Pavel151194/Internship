@@ -85,8 +85,8 @@ $increaseMonth.addEventListener("click", () => {
 document.addEventListener("click", event => {
     const target = event.target
     if (target.closest(".day")){
-        const $dates = document.querySelectorAll(".day")
-        $dates.forEach(date => date.classList.remove("active"))
+        document.querySelectorAll(".active").forEach(date => date.classList.remove("active"))
         target.classList.toggle("active")
     }
+
 })
