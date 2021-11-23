@@ -39,7 +39,12 @@ const nine = (op) => {
     return op(9)
 }
 
-const plus = (rightOp) => (leftOp) => `${leftOp} + ${rightOp()} = ${leftOp + rightOp()}`
-const minus = (rightOp) => (leftOp) => `${leftOp} - ${rightOp()} = ${leftOp - rightOp()}`
-const times = (rightOp) => (leftOp) => `${leftOp} * ${rightOp()} = ${leftOp * rightOp()}`
-const dividedBy = (rightOp) => (leftOp) => `${leftOp} / ${rightOp()} = ${leftOp / rightOp()}`
+const plus = (rightOp) => (leftOp) => `Результат: ${leftOp} + ${rightOp()} = ${leftOp + rightOp()}`
+const minus = (rightOp) => (leftOp) => `Результат: ${leftOp} - ${rightOp()} = ${leftOp - rightOp()}`
+const times = (rightOp) => (leftOp) => `Результат: ${leftOp} * ${rightOp()} = ${leftOp * rightOp()}`
+const dividedBy = (rightOp) => (leftOp) => `Результат: ${leftOp} / ${rightOp()} = ${leftOp / rightOp()}`
+
+console.log( seven(times(five())) )
+console.log( four(plus(nine())) )
+console.log( eight(minus(three())) )
+console.log( six(dividedBy(two())) )
