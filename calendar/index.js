@@ -74,10 +74,19 @@ $increaseMonth.addEventListener("click", () => {
 
     if (Number($monthSelect.value) !== 11) {
         $monthSelect.value = Number($monthSelect.value) + 1
-        
+
         calendar
             .saveMonth($monthSelect.value)
             .init()
             .showCalendar($datesField, $daysField)
+    }
+})
+
+document.addEventListener("click", event => {
+    const target = event.target
+    if (target.closest(".day")){
+        const $dates = document.querySelectorAll(".day")
+        $dates.forEach(date => date.classList.remove("active"))
+        target.classList.toggle("active")
     }
 })

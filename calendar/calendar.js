@@ -29,11 +29,6 @@ export class Calendar {
         monthList.innerHTML += this.monthList.map((month, i) => `<option value="${i}">${month}</option>`)
     }
 
-    addDaysLists(daysField) {
-        daysField = ""
-        daysField.innerHTML += this.dayList.map(day => `<td>${day}</td>`)
-    }
-
     showCalendar(datesField, daysField) {
         
         if (this.firstDayOfMonth !== 0) {
@@ -43,7 +38,7 @@ export class Calendar {
         }
 
         for (let i = 1; i <= this.lastDateOfMonth; i++) {
-            this.calendar += `<td>${i}</td>`
+            this.calendar += `<td class="day">${i}</td>`
 
             if (new Date(this.fullDate.getFullYear(), this.fullDate.getMonth(), i).getDay() === 0) {
                 this.calendar += "<tr>"

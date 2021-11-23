@@ -44,10 +44,17 @@ table {
     border-spacing: 0;
     border: 0.25px solid
 }
-
 td {
     border: 0.25px solid;
     text-align: center;
     width: 45px;
 }
-
+.day {
+    cursor: pointer;
+}
+.day:hover {
+    background-color:gold;
+}
+.active {
+    background-color:gold
+}
