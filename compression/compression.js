@@ -1,13 +1,13 @@
 const compress = (string) => {
     const resultObj = {}
-    const mass = [...string]
+    const letters = [...string]
 
-    mass.sort().forEach(el => resultObj[el] = (resultObj[el] || 0) + 1)
+    letters.sort().forEach(el => resultObj[el] = (resultObj[el] || 0) + 1)
 
     return Object.entries(resultObj).flat().filter(el => el !== 1).join("")
 }
 
-console.log(compress("bbbccccaa"))
+console.log(compress("aabbbcccc"))
 
 const uncompress = (string) => {
     const mass = [...string]

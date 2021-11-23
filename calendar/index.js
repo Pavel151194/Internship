@@ -1,7 +1,7 @@
-import { $yearList, $monthList, $daysField, $datesField, $calendarOptionButtons, $showCalendar, $decreaseYear, $increaseYear } from "./DOMs.js"
+import { $yearList, $monthList, $daysField, $datesField, $calendarOptionButtons, $showCalendar, $decreaseYear, $increaseYear, $decreaseMonth, $increaseMonth } from "./DOMs.js"
 import { Calendar } from "./Calendar.js"
 
-const calendar = new Calendar(10)
+const calendar = new Calendar(12)
 
 calendar.addSelectsLists($yearList, $monthList)
 
@@ -22,5 +22,62 @@ document.addEventListener("change", event => {
 })
 
 $showCalendar.addEventListener("click", () => {
-    calendar.create().showCalendar($datesField, $daysField)
+    calendar
+        .init()
+        .showCalendar($datesField, $daysField)
+})
+
+$decreaseYear.addEventListener("click", () => {
+    const $yearSelect = document.querySelector(".year_list")
+    const years = calendar.yearList
+
+    if (years.indexOf(Number($yearSelect.value)) !== years.length - 1) {
+        $yearSelect.value = Number($yearSelect.value) - 1
+
+        calendar
+            .saveYear($yearSelect.value)
+            .init()
+            .showCalendar($datesField, $daysField)
+
+    }
+})
+
+$increaseYear.addEventListener("click", () => {
+    const $yearSelect = document.querySelector(".year_list")
+    const years = calendar.yearList
+
+    if (years.indexOf(Number($yearSelect.value)) !== 0) {
+        $yearSelect.value = Number($yearSelect.value) + 1
+
+        calendar
+            .saveYear($yearSelect.value)
+            .init()
+            .showCalendar($datesField, $daysField)
+    }
+})
+
+$decreaseMonth.addEventListener("click", () => {
+    const $monthSelect = document.querySelector(".month_list")
+
+    if (Number($monthSelect.value) !== 0) {
+        $monthSelect.value = Number($monthSelect.value) - 1
+
+        calendar
+            .saveMonth($monthSelect.value)
+            .init()
+            .showCalendar($datesField, $daysField)
+    }
+})
+
+$increaseMonth.addEventListener("click", () => {
+    const $monthSelect = document.querySelector(".month_list")
+
+    if (Number($monthSelect.value) !== 11) {
+        $monthSelect.value = Number($monthSelect.value) + 1
+        
+        calendar
+            .saveMonth($monthSelect.value)
+            .init()
+            .showCalendar($datesField, $daysField)
+    }
 })

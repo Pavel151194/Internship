@@ -6,3 +6,5 @@ export const $calendarOptionButtons = document.querySelectorAll(".calendar_optio
 export const $showCalendar = document.querySelector(".show_calendar")
 export const $decreaseYear = document.querySelector(".decrease_year")
 export const $increaseYear = document.querySelector(".increase_year")
+export const $decreaseMonth = document.querySelector(".decrease_month")
+export const $increaseMonth = document.querySelector(".increase_month")

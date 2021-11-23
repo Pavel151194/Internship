@@ -1,20 +1,12 @@
 export class Calendar {  
-    constructor(numbersOfYears) {
-        this.yearList = [...Array(numbersOfYears)].map((_, i) => new Date().getFullYear() - i)
+    constructor(numberOfYears) {
+        this.yearList = [...Array(numberOfYears)].map((_, i) => new Date().getFullYear() - i)
         this.monthList = ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"]
         this.dayList = ["Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Вс"]
+    }
+
+    init() {
         this.calendar = "<tr>"
-    }
-
-    saveYear(year) {
-        this.year = year
-    }
-
-    saveMonth(month) {
-        this.month = Number(month) + 1
-    }
-
-    create() {
         this.lastDateOfMonth = new Date(this.year, this.month, 0).getDate()
         this.fullDate = new Date(this.year, this.month - 1, this.lastDateOfMonth)
         this.lastDayOfMonth = this.fullDate.getDay()
@@ -22,9 +14,28 @@ export class Calendar {
         return this
     }
 
-    showCalendar(datesField, daysField) {
-        this.addDaysLists(daysField)
+    saveYear(year) {
+        this.year = year
+        return this
+    }
 
+    saveMonth(month) {
+        this.month = Number(month) + 1
+        return this
+    }
+
+    addSelectsLists(yearList, monthList) {
+        yearList.innerHTML += this.yearList.map(year => `<option value="${year}">${year}</option>`)
+        monthList.innerHTML += this.monthList.map((month, i) => `<option value="${i}">${month}</option>`)
+    }
+
+    addDaysLists(daysField) {
+        daysField = ""
+        daysField.innerHTML += this.dayList.map(day => `<td>${day}</td>`)
+    }
+
+    showCalendar(datesField, daysField) {
+        
         if (this.firstDayOfMonth !== 0) {
             for (let i = 1; i < this.firstDayOfMonth; i++) this.calendar += "<td></td>"
         } else {
@@ -44,16 +55,9 @@ export class Calendar {
         }   
        
         datesField.innerHTML = this.calendar
+        daysField.innerHTML = this.dayList.map(day => `<td>${day}</td>`)
 
         return this
     }
 
-    addDaysLists(daysField) {
-        daysField.innerHTML += this.dayList.map(day => `<td>${day}</td>`)
-    }
-
-    addSelectsLists(yearList, monthList) {
-        yearList.innerHTML += this.yearList.map(year => `<option value="${year}">${year}</option>`)
-        monthList.innerHTML += this.monthList.map((month, i) => `<option value="${i}">${month}</option>`)
-    }
 }

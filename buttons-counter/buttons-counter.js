@@ -1,8 +1,5 @@
 const $buttons = document.querySelectorAll('.button')
 
-// const count = (event) => event.target.innerText = +event.target.innerText + 1
-// $buttons.forEach(el => el.addEventListener('click', (event) => count(event)))
-
 const increaseCounter = count => () => ++count
 
 $buttons.forEach(button => button.addEventListener('click', (event) => {
@@ -16,3 +13,13 @@ $buttons.forEach(button => button.addEventListener('click', (event) => {
         target.innerHTML = count()
     }
 }))
+
+// const countClicks = (element) => {
+//     let counter = 0
+//     return () => {
+//         ++counter
+//         element.innerText = counter
+//     }
+// }
+
+// $buttons.forEach(button => button.addEventListener('click', countClicks(button)))
