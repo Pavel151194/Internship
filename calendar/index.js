@@ -88,5 +88,4 @@ document.addEventListener("click", event => {
         document.querySelectorAll(".active").forEach(date => date.classList.remove("active"))
         target.classList.toggle("active")
     }
-
 })

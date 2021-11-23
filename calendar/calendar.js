@@ -15,7 +15,7 @@ export class Calendar {
     }
 
     saveYear(year) {
-        this.year = year
+        this.year = Number(year)
         return this
     }
 
@@ -54,5 +54,4 @@ export class Calendar {
 
         return this
     }
-
 }
