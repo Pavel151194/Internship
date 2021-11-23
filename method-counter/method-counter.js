@@ -9,18 +9,18 @@ function getCounter(num) {
 
         count(num) {
             this.counter += num
+            return this
         },
 
         reset() {
             this.counter = 0
+            return this
         }
     }
 }
 
 const counter = getCounter(5)
-counter.log()
-counter.count(4)
-counter.reset()
+counter.log().count(4).reset()
 
 // 2.
 function GetCounter(num) {

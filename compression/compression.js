@@ -1,7 +1,8 @@
 const compress = (string) => {
     const resultObj = {}
+    const mass = [...string]
 
-    string.split("").sort().forEach(el => resultObj[el] = (resultObj[el] || 0) + 1)
+    mass.sort().forEach(el => resultObj[el] = (resultObj[el] || 0) + 1)
 
     return Object.entries(resultObj).flat().filter(el => el !== 1).join("")
 }
