@@ -4,7 +4,9 @@ const numbers = [...userNumbers]
 
 // 1.
 numbers.reduce((acc, num, i, arr) => {
-    if (Number(acc) % 2 === 0 && Number(num) % 2 === 0) arr.splice(i - 1, 1, `${acc}-`)
+    if (Number(acc) % 2 === 0 && Number(num) % 2 === 0) {
+        arr.splice(i - 1, 1, `${acc}-`)
+    }
     return num
 })
 
