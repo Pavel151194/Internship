@@ -6,7 +6,7 @@ export class Calendar {
     }
 
     init() {
-        this.calendar = "<tr>"
+        this.calendar = `<table class="calendar">`
         this.lastDateOfMonth = new Date(this.year, this.month, 0).getDate()
         this.fullDate = new Date(this.year, this.month - 1, this.lastDateOfMonth)
         this.lastDayOfMonth = this.fullDate.getDay()
@@ -29,7 +29,17 @@ export class Calendar {
         monthList.innerHTML += this.monthList.map((month, i) => `<option value="${i}">${month}</option>`)
     }
 
-    createCalendar(datesField, daysField) {
+    createCalendar(element) {
+        this.calendar += `<thead>
+            <tr><td colspan="7">
+                <button class="calendar_button decrease_year">&#60&#60</button>
+                <button class="calendar_button decrease_month">&#60</button>
+                ${this.monthList[this.fullDate.getMonth()]} ${this.year} года
+                <button class="calendar_button increase_month">&#62</button>
+                <button class="calendar_button increase_year">&#62&#62</button>
+            </td></tr>
+            <tr>${this.dayList.map(day => `<td>${day}</td>`)}</tr>
+        </thead>`
         
         if (this.firstDayOfMonth !== 0) {
             for (let i = 1; i < this.firstDayOfMonth; i++) this.calendar += "<td></td>"
@@ -47,10 +57,11 @@ export class Calendar {
 
         if (this.lastDayOfMonth !== 0) {
             for (let i = 1; i <= 7 - this.lastDayOfMonth; i++) this.calendar += "<td></td>"
-        }   
-       
-        datesField.innerHTML = this.calendar
-        daysField.innerHTML = this.dayList.map(day => `<td>${day}</td>`)
+        }
+
+        this.calendar += "</table>"
+
+        element.innerHTML += this.calendar
 
         return this
     }
@@ -58,5 +69,17 @@ export class Calendar {
     show(datesField, daysField) {
         this.init()
         this.createCalendar(datesField, daysField)
+    }
+
+    remove(element) {
+        element.outerHTML = ""
+    }
+
+    disableButton(button) {
+        button.setAttribute("disabled", true)
+    }
+
+    enableButton(button) {
+        button.removeAttribute("disabled")
     }
 }

@@ -15,29 +15,25 @@ button {
     cursor: pointer;
 }
 .wrapper {
-    max-width: 350px;
     margin: auto;
 }
 .calendar_options {
+    max-width: 350px;
+    margin: 0 auto;
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     grid-gap: 5px;
-    margin-bottom: 5px;
-}
-.increase_year, .decrease_year, .increase_month, .decrease_month {
-    grid-row-start: 1;
-    grid-row-end: 3;
-}
-.month_list {
-    grid-row-start: 1;
+    margin-bottom: 10px;
 }
 .month_list, .year_list {
-    grid-column-start: 3;
+   
     outline: none;
     cursor: pointer;
 }
-.show_calendar{
-    grid-column-start: 3;
+.calendars {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
 }
 table {
     margin: auto;
@@ -48,6 +44,11 @@ td {
     border: 0.25px solid;
     text-align: center;
     width: 45px;
+}
+.calendar_button {
+    margin: 0 5px;
+    background-color: inherit;
+    border: none;
 }
 .day {
     cursor: pointer;

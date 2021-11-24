@@ -1,11 +1,11 @@
-import { $yearList, $monthList, $daysField, $datesField, $calendarOptionButtons, $showCalendar, $decreaseYear, $increaseYear, $decreaseMonth, $increaseMonth } from "./DOMs.js"
+import { $yearList, $monthList, $calendars, $calendarOptionButtons, $showCalendar, $removeCalendar } from "./DOMs.js"
 import { Calendar } from "./Calendar.js"
 
 const calendar = new Calendar(12)
 
 calendar.addSelectsLists($yearList, $monthList)
 
-$calendarOptionButtons.forEach(button => button.setAttribute("disabled", true))
+$calendarOptionButtons.forEach(button => calendar.disableButton(button))
 
 document.addEventListener("change", event => {
     const $monthSelect = event.target.closest(".month_list")
@@ -15,54 +15,36 @@ document.addEventListener("change", event => {
     if ($yearSelect) calendar.saveYear($yearSelect.value)
     
     if (calendar.month && calendar.year) {
-        $calendarOptionButtons.forEach(button => button.removeAttribute("disabled"))
+        $calendarOptionButtons.forEach((button, i, arr) => {
+            if (i !== arr.length - 1) calendar.enableButton(button)
+        })
     }
 })
 
 $showCalendar.addEventListener("click", () => {
-    calendar.show($datesField, $daysField)
+    calendar.show($calendars)
+    calendar.enableButton($removeCalendar)
 })
 
-$increaseYear.addEventListener("click", () => {
-    const $yearSelect = document.querySelector(".year_list")
-    const years = calendar.yearList
+$removeCalendar.addEventListener("click", () => {
+    const calendars = document.querySelectorAll(".calendar")
 
-    if (years.indexOf(Number($yearSelect.value)) !== 0) {
-        $yearSelect.value = Number($yearSelect.value) + 1
-        calendar.saveYear($yearSelect.value).show($datesField, $daysField)
-    }
-})
+    if (calendars.length) {
+        calendar.enableButton($removeCalendar)
+        calendar.remove(calendars[calendars.length - 1])
+    } 
 
-$decreaseYear.addEventListener("click", () => {
-    const $yearSelect = document.querySelector(".year_list")
-    const years = calendar.yearList
-
-    if (years.indexOf(Number($yearSelect.value)) !== years.length - 1) {
-        $yearSelect.value = Number($yearSelect.value) - 1
-        calendar.saveYear($yearSelect.value).show($datesField, $daysField)
-    }
-})
-
-$increaseMonth.addEventListener("click", () => {
-    const $monthSelect = document.querySelector(".month_list")
-
-    if (Number($monthSelect.value) !== 11) {
-        $monthSelect.value = Number($monthSelect.value) + 1
-        calendar.saveMonth($monthSelect.value).show($datesField, $daysField)
-    }
-})
-
-$decreaseMonth.addEventListener("click", () => {
-    const $monthSelect = document.querySelector(".month_list")
-
-    if (Number($monthSelect.value) !== 0) {
-        $monthSelect.value = Number($monthSelect.value) - 1
-        calendar.saveMonth($monthSelect.value).show($datesField, $daysField)
+    if (calendars.length === 1) {
+        calendar.disableButton($removeCalendar)
     }
 })
 
 document.addEventListener("click", event => {
     const $day = event.target.closest(".day")
+    const $increaseYear = event.target.closest(".increase_year")
+    const $decreaseYear = event.target.closest(".decrease_year")
+    const $increaseMonth = event.target.closest(".increase_month")
+    const $decreaseMonth = event.target.closest(".decrease_month")
 
     if ($day) {
         const $actives = document.querySelectorAll(".active")
@@ -70,4 +52,31 @@ document.addEventListener("click", event => {
         $day.classList.toggle("active")
     }
 
+    if ($increaseYear) {
+        const $calendar = event.target.closest(".calendar")
+        $calendar.innerHTML = ""
+        calendar.year += 1
+        calendar.saveYear(calendar.year).show($calendar)
+    }
+
+    if ($decreaseYear) {
+        const $calendar = event.target.closest(".calendar")
+        $calendar.innerHTML = ""
+        calendar.year -= 1
+        calendar.saveYear(calendar.year).show($calendar)
+    }
+
+    if ($increaseMonth) {
+        const $calendar = event.target.closest(".calendar")
+        $calendar.innerHTML = ""
+        calendar.month += 1 - 1
+        calendar.saveMonth(calendar.month).show($calendar)
+    }
+
+    if ($decreaseMonth) {
+        const $calendar = event.target.closest(".calendar")
+        $calendar.innerHTML = ""
+        calendar.month -= 2
+        calendar.saveMonth(calendar.month).show($calendar)
+    }
 })
