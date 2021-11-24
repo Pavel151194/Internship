@@ -22,14 +22,14 @@ $showCalendar.addEventListener("click", () => {
 })
 
 $removeCalendar.addEventListener("click", () => {
-    const calendars = document.querySelectorAll(".calendar")
+    const $calendars = document.querySelectorAll(".calendar")
 
-    if (calendars.length) {
+    if ($calendars.length) {
         calendar.enableButton($removeCalendar)
-        calendar.remove(calendars[calendars.length - 1])
+        calendar.remove($calendars[$calendars.length - 1])
     } 
 
-    if (calendars.length === 1) {
+    if ($calendars.length === 1) {
         calendar.disableButton($removeCalendar)
     }
 })
