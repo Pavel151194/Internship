@@ -13,12 +13,7 @@ document.addEventListener("change", event => {
 
     if ($monthSelect) calendar.saveMonth($monthSelect.value)
     if ($yearSelect) calendar.saveYear($yearSelect.value)
-    
-    if (calendar.month && calendar.year) {
-        $calendarOptionButtons.forEach((button, i, arr) => {
-            if (i !== arr.length - 1) calendar.enableButton(button)
-        })
-    }
+    if (calendar.month && calendar.year) calendar.enableButton($showCalendar)
 })
 
 $showCalendar.addEventListener("click", () => {

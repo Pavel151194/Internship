@@ -32,11 +32,13 @@ export class Calendar {
     createCalendar(element) {
         this.calendar += `<thead>
             <tr><td colspan="7">
-                <button class="calendar_button decrease_year">&#60&#60</button>
-                <button class="calendar_button decrease_month">&#60</button>
-                ${this.monthList[this.fullDate.getMonth()]} ${this.year} года
-                <button class="calendar_button increase_month">&#62</button>
-                <button class="calendar_button increase_year">&#62&#62</button>
+                <div class="calendar_head">
+                    <button class="calendar_button decrease_year">&#60&#60</button>
+                    <button class="calendar_button decrease_month">&#60</button>
+                    <p class="calendar_values">${this.monthList[this.fullDate.getMonth()]} ${this.year} года</p>
+                    <button class="calendar_button increase_month">&#62</button>
+                    <button class="calendar_button increase_year">&#62&#62</button>
+                </div>
             </td></tr>
             <tr>${this.dayList.map(day => `<td>${day}</td>`)}</tr>
         </thead>`
