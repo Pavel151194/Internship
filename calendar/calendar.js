@@ -29,7 +29,7 @@ export class Calendar {
         monthList.innerHTML += this.monthList.map((month, i) => `<option value="${i}">${month}</option>`)
     }
 
-    showCalendar(datesField, daysField) {
+    createCalendar(datesField, daysField) {
         
         if (this.firstDayOfMonth !== 0) {
             for (let i = 1; i < this.firstDayOfMonth; i++) this.calendar += "<td></td>"
@@ -53,5 +53,10 @@ export class Calendar {
         daysField.innerHTML = this.dayList.map(day => `<td>${day}</td>`)
 
         return this
+    }
+
+    show(datesField, daysField) {
+        this.init()
+        this.createCalendar(datesField, daysField)
     }
 }
