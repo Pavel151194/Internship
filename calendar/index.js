@@ -50,28 +50,24 @@ document.addEventListener("click", event => {
     if ($increaseYear) {
         const $calendar = event.target.closest(".calendar")
         $calendar.innerHTML = ""
-        calendar.year += 1
-        calendar.saveYear(calendar.year).show($calendar)
+        calendar.saveYear(calendar.year += 1).show($calendar)
     }
 
     if ($decreaseYear) {
         const $calendar = event.target.closest(".calendar")
         $calendar.innerHTML = ""
-        calendar.year -= 1
-        calendar.saveYear(calendar.year).show($calendar)
+        calendar.saveYear(calendar.year -= 1).show($calendar)
     }
 
     if ($increaseMonth) {
         const $calendar = event.target.closest(".calendar")
         $calendar.innerHTML = ""
-        calendar.month += 1 - 1
-        calendar.saveMonth(calendar.month).show($calendar)
+        calendar.saveMonth(calendar.month += 1 - 1).show($calendar)
     }
 
     if ($decreaseMonth) {
         const $calendar = event.target.closest(".calendar")
         $calendar.innerHTML = ""
-        calendar.month -= 2
-        calendar.saveMonth(calendar.month).show($calendar)
+        calendar.saveMonth(calendar.month -= 2).show($calendar)
     }
 })

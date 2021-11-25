@@ -22,6 +22,7 @@ document.addEventListener("click", event => {
 
             if (mass.length) $buttonDelete.removeAttribute("disabled")
         }
+        return
     }
 
     if (target.classList.contains("button_delete")) {

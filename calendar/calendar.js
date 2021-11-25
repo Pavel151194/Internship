@@ -8,10 +8,21 @@ export class Calendar {
     init() {
         this.calendar = `<table class="calendar">`
         this.lastDateOfMonth = new Date(this.year, this.month, 0).getDate()
+
+        console.log(this.lastDateOfMonth)
+
         this.fullDate = new Date(this.year, this.month - 1, this.lastDateOfMonth)
+
+        console.log(this.fullDate)
+
         this.lastDayOfMonth = this.fullDate.getDay()
         this.firstDayOfMonth = new Date(this.fullDate.getFullYear(), this.fullDate.getMonth(), 1).getDay()
         return this
+    }
+
+    show(element) {
+        this.init()
+        this.createCalendar(element)
     }
 
     saveYear(year) {
@@ -24,12 +35,10 @@ export class Calendar {
         return this
     }
 
-    addSelectsLists(yearList, monthList) {
-        yearList.innerHTML += this.yearList.map(year => `<option value="${year}">${year}</option>`)
-        monthList.innerHTML += this.monthList.map((month, i) => `<option value="${i}">${month}</option>`)
-    }
-
     createCalendar(element) {
+        let dayListHTML = ""
+        this.dayList.map(day => dayListHTML += `<td>${day}</td>`)
+
         this.calendar += `<thead>
             <tr><td colspan="7">
                 <div class="calendar_head">
@@ -40,7 +49,7 @@ export class Calendar {
                     <button class="calendar_button increase_year">&#62&#62</button>
                 </div>
             </td></tr>
-            <tr>${this.dayList.map(day => `<td>${day}</td>`)}</tr>
+            <tr>${dayListHTML}</tr>
         </thead>`
         
         if (this.firstDayOfMonth !== 0) {
@@ -68,15 +77,21 @@ export class Calendar {
         return this
     }
 
-    show(datesField, daysField) {
-        this.init()
-        this.createCalendar(datesField, daysField)
-    }
-
     remove(element) {
         element.outerHTML = ""
     }
 
+    addSelectsLists(yearList, monthList) {
+        let yearListHTML = ""
+        let monthListHTML = ""
+
+        this.yearList.map(year => yearListHTML += `<option value="${year}">${year}</option>`)
+        this.monthList.map((month, i) => monthListHTML += `<option value="${i}">${month}</option>`)
+
+        yearList.innerHTML += yearListHTML
+        monthList.innerHTML += monthListHTML
+    }
+    
     disableButton(button) {
         button.setAttribute("disabled", true)
     }

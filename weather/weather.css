@@ -1,0 +1,39 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    cursor: default;
+}
+button {
+    cursor: pointer;
+}
+img {
+    line-height: 0;
+}
+.widgets {
+    position: absolute;
+    right: 0;
+}
+.weather_widget {
+    margin-bottom: 5px;
+    padding: 5px;
+    border-radius: 5px;
+    background-color: rgb(166, 255, 255);
+    border: 1px solid;
+    display: flex;
+    flex-direction: column;
+}
+.widget_icon {
+    align-self: center;
+    width: 80px;
+    height: 80px;
+}
+.show_more_weather{
+    align-self: flex-start;
+}
+.close_widget {
+    align-self: flex-end;
+}
+.hidden {
+    display: none;
+}

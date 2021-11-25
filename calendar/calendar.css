@@ -3,16 +3,15 @@
     margin: 0;
     padding: 0;
     cursor: default;
-    font-family: "sans-serif";
-}
-body {
-    font-size: 0;
-}
-td, select, button {
     font-size: 20px;
+    font-family: "sans-serif";
 }
 button {
     cursor: pointer;
+}
+button:hover {
+    background-color:white;
+    transition: ease-in-out 100ms;
 }
 .wrapper {
     margin: auto;
@@ -26,9 +25,12 @@ button {
     margin-bottom: 10px;
 }
 .month_list, .year_list {
-   
+    border-radius: 10px;
     outline: none;
     cursor: pointer;
+}
+.calendar_option_button {
+    border-radius: 10px;
 }
 .calendars {
     display: flex;
@@ -46,8 +48,8 @@ td {
     width: 45px;
 }
 .calendar_button {
-    background-color: inherit;
-    border: none;
+    width: 40px;
+
 }
 .calendar_head {
     margin-left: 2px;
@@ -55,7 +57,7 @@ td {
     gap: 10px;
 }
 .calendar_values {
-    width: 200px;
+    width: 167px;
 }
 .day {
     cursor: pointer;
