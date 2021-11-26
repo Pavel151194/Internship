@@ -47,10 +47,9 @@ export class WeatherWidget  {
     }
 
     filterForecast(num) {
-        const mass = Array.from(Array(num).keys())
-        const days = mass.map(el => Date.UTC(new Date().getFullYear(), new Date().getMonth(), new Date().getDate() + el, 12)/1000)
+        const days = [...Array(num).keys()].map(i => Date.UTC(new Date().getFullYear(), new Date().getMonth(), new Date().getDate() + i, 12)/1000)
         
-        return days.map(el => this.forecast.list.filter(item => item.dt === el)[0])
+        return days.map(day => this.forecast.list.filter(item => item.dt === day)[0])
     }
 
     async showForecast(parent) {
