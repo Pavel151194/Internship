@@ -17,9 +17,10 @@ document.addEventListener('click', async event => {
     if ($showMoreWeather) {
         const forecast = await weatherWidget.getForecast()
         weatherWidget.showForecast($widgets)
-        console.log(forecast.forecast)
-    }
 
+    }
 })
 
-console.log(weatherWidget.getWeatherDate())
+document.addEventListener('load', async event => {
+    console.log("load")
+})

@@ -43,21 +43,25 @@ export class WeatherWidget  {
         `
     }
 
-    getWeatherDate() {
-        return this.date = `${new Date().getFullYear()}-${new Date().getMonth() + 1}-${new Date().getDate()}`
-    }
-    
     showForecast(parent) {
-        // 9 17 25 step 8
-        const mass = [9, 17, 25]
+        const today = new Date()
+        const tomorrow = Date.UTC(today.getFullYear(), today.getMonth(), today.getDate() + 1, 12)
+        const afterTomorrow = Date.UTC(today.getFullYear(), today.getMonth(), today.getDate() + 2, 12)
+
+        const forecastToday = this.forecast.list[0]
+        const forecastTomorrow = this.forecast.list.filter(item => item.dt === tomorrow/1000)[0]
+        const forecastAfterTomorrow = this.forecast.list.filter(item => item.dt === afterTomorrow/1000)[0]
+
+        this.forecasts = [forecastToday, forecastTomorrow, forecastAfterTomorrow]
+
         let result = `<section class="weather_widget"><button class="close_widget">X</button><p>${this.forecast.city.name}</p>`
-        mass.map(i => result += `
-            <p>прогноз на ${this.forecast.list[i].dt_txt}</p>
-            <p>температура воздуха: ${parseInt(this.forecast.list[i].main.temp - 273.15)} °C</p>
-            <img class="widget_icon" src="http://openweathermap.org/img/wn/${this.forecast.list[i].weather[0].icon}@2x.png" alt="icon">
-            <p>${this.forecast.list[i].weather[0].description}</p>
-            <p>ветер ${this.forecast.list[i].wind.speed} м/с</p>
-            <p class="weather_humidity">влажность ${this.forecast.list[i].main.humidity}%</p>
+        this.forecasts.map(forecast => result += `
+            <p>прогноз на ${forecast.dt_txt}</p>
+            <p>температура воздуха: ${parseInt(forecast.main.temp - 273.15)} °C</p>
+            <img class="widget_icon" src="http://openweathermap.org/img/wn/${forecast.weather[0].icon}@2x.png" alt="icon">
+            <p>${forecast.weather[0].description}</p>
+            <p>ветер ${forecast.wind.speed} м/с</p>
+            <p class="weather_humidity">влажность ${forecast.main.humidity}%</p>
         `)
         result += `</section>`
         parent.innerHTML += result
