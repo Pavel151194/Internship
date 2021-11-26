@@ -15,25 +15,43 @@ img {
     right: 0;
 }
 .weather_widget {
+    width: 194px;
+    height: 219px;
     margin-bottom: 5px;
     padding: 5px;
     border-radius: 5px;
     background-color: rgb(166, 255, 255);
     border: 1px solid;
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-column-gap: 50px;
+    grid-template-columns: 1fr 0.1fr;
+    overflow-y: scroll;
+}
+.weather_widget > p, .weather_widget > img {
+    grid-column-start: 1;
+    grid-column-end: 3;
 }
 .widget_icon {
-    align-self: center;
+    margin: auto;
     width: 80px;
     height: 80px;
+}
+.weather_humidity {
+    margin-bottom: 20px;
 }
 .show_more_weather{
     align-self: flex-start;
 }
 .close_widget {
-    align-self: flex-end;
+    grid-column-start: 2;
 }
-.hidden {
-    display: none;
+.weather_widget::-webkit-scrollbar {
+    width: 3px;
+}
+.weather_widget::-webkit-scrollbar-thumb {
+    background-color: black;
+    border-radius: 3px;
+}
+.weather_widget::-webkit-scrollbar-thumb:hover {
+    cursor: pointer;
 }

@@ -15,17 +15,11 @@ document.addEventListener('click', async event => {
     }
 
     if ($showMoreWeather) {
-        const forecast = await weatherWidget.getMoreWeather()
+        const forecast = await weatherWidget.getForecast()
         weatherWidget.showForecast($widgets)
         console.log(forecast.forecast)
     }
 
 })
 
-let year = new Date().getFullYear()
-let month = new Date().getMonth() + 1
-let date = new Date().getDate()
-let str = `${year}-${month}-${date}`
-
-console.log(str)
-//"2021-11-25 15:00:00"
+console.log(weatherWidget.getWeatherDate())
