@@ -47,6 +47,8 @@ img {
 }
 .close_widget {
     grid-column-start: 2;
+    position: fixed;
+    right: 7px;
 }
 .loader {
     width: 190px;

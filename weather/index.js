@@ -15,8 +15,6 @@ document.addEventListener('click', async event => {
     }
 
     if ($showMoreWeather) {
-        
-        
         await weatherWidget.getForecast($widgets)
         weatherWidget.showForecast($widgets)
 

@@ -52,10 +52,11 @@ export class WeatherWidget  {
         return days.map(day => this.forecast.list.filter(item => item.dt === day)[0])
     }
 
-    async showForecast(parent) {
+    showForecast(parent) {
         this.forecasts = this.filterForecast(3)
 
         let result = `<section class="weather_widget"><button class="close_widget">X</button><p>${this.forecast.city.name}</p>`
+
         this.forecasts.map(forecast => result += `
             <p>прогноз на ${forecast.dt_txt}</p>
             <p>температура воздуха: ${parseInt(forecast.main.temp - 273.15)} °C</p>
@@ -64,6 +65,7 @@ export class WeatherWidget  {
             <p>ветер ${forecast.wind.speed} м/с</p>
             <p class="weather_humidity">влажность ${forecast.main.humidity}%</p>
         `)
+
         result += `</section>`
         parent.innerHTML += result
     }
