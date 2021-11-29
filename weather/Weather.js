@@ -72,7 +72,8 @@ export class WeatherWidget  {
     }
 
     showLoader(parent) {
-        parent.innerHTML += `<img class='loader' src="./assets/loader.gif"></img>`
+        const src = './assets/loader.gif'
+        parent.innerHTML += `<img class='loader' src=${src}></img>`
     }
 
     close(element) {
