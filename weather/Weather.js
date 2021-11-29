@@ -46,16 +46,15 @@ export class WeatherWidget  {
         `
     }
 
-    filterForecast(num) {
+    filterForecast() {
         // const days = [...Array(num).keys()].map(i => Date.UTC(new Date().getFullYear(), new Date().getMonth(), new Date().getDate() + i, 12)/1000)
-        
         // return days.map(day => this.forecast.list.filter(item => item.dt === day)[0])
 
         return [0, 7, 15].map(i => this.forecast.list[i])
     }
 
     showForecast(parent) {
-        this.forecasts = this.filterForecast(3)
+        this.forecasts = this.filterForecast()
 
         let result = `<section class="weather_widget"><button class="close_widget">X</button><p>${this.forecast.city.name}</p>`
 
