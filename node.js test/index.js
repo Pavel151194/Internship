@@ -25,7 +25,7 @@ app.post('/folder', (req, res) => { // POST http://localhost:3000/folder?FolderN
 })
 
 app.post('/file', (req, res) => {
-    console.log(req.query)
+
 
       
 })
