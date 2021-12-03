@@ -2,17 +2,24 @@ import fs from 'fs'
 import path from 'path'
 
 export class File {
-    ['add'](req, res) {
-        // fs.mkdir(path.resolve(path.resolve(), 'folder'), (err) => {
-        //     if (err) return res.status(400).json(err)
-        //     res.status(200).json(`folder has been added`)
-        // })
+    ['write'](res, name) {
+        fs.writeFile(path.resolve(path.resolve(), name), 'string', (err) => {
+            if (err) return res.status(400).json(err)
+            res.status(200).json(`${name} has been wrote`)
+        })
     }
 
-    ['remove'](req, res) {
-        // fs.rmdir(path.resolve(path.resolve(), 'folder'), (err) => {
-        //     if (err) return res.status(400).json(err)
-        //     res.status(200).json(`folder has been removed`)
-        // })
+    ['append'](res, name) {
+        fs.writeFile(path.resolve(path.resolve(), name), 'string', (err) => {
+            if (err) return res.status(400).json(err)
+            res.status(200).json(`${name} has been appended`)
+        })
+    }
+
+    ['remove'](res, name) {
+        fs.unlink(path.resolve(path.resolve(), name), (err) => {
+            if (err) return res.status(400).json(err)
+            res.status(200).json(`${name} has been removed`)
+        })
     }
 }
