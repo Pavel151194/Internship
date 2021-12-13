@@ -9,9 +9,11 @@ import { ApiError } from "../exceptions/api_error.js"
 class UserService {
     async registration(email, password) {
         const candidate = await UserModel.findOne({ email })
+
         if (candidate) {
             throw ApiError.BadRequest(`Пользователь с почтовым адресом ${email} уже существует`)
         }
+        
         const hashPassword = await bcrypt.hash(password, 3)
         const activationLink = v4()
 
@@ -46,7 +48,7 @@ class UserService {
         }
 
         const userDto = new UserDto(user)
-        const tokens = tokenService.generateTokens({ ...UserDto })
+        const tokens = tokenService.generateTokens({ ...userDto })
         await tokenService.saveToken(userDto.id, tokens.refreshToken)
 
         return { ...tokens, user: userDto }
@@ -65,17 +67,13 @@ class UserService {
         const userData = tokenService.validateRefreshToken(refreshToken)
         const tokenFromDb = await tokenService.findToken(refreshToken)
 
-        console.log(`========================================`)
-        console.log(`userData:`, userData)
-        console.log(`========================================`)
-
         if (!userData || !tokenFromDb) {
             throw ApiError.UnauthorizedError()
         }
 
         const user = await UserModel.findById(userData.id)
         const userDto = new UserDto(user)
-        const tokens = tokenService.generateTokens({ ...UserDto })
+        const tokens = tokenService.generateTokens({ ...userDto })
         await tokenService.saveToken(userDto.id, tokens.refreshToken)
 
         return { ...tokens, user: userDto }

@@ -3,7 +3,7 @@ import { body } from "express-validator"
 import { userController } from "../controllers/user_controller.js"
 import { authMiddleware } from "../middlewares/auth_middleware.js"
 
-const router = new Router()
+const router = Router()
 
 router.post(
     '/registration',
